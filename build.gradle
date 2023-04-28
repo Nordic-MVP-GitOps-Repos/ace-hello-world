@@ -1,9 +1,17 @@
 plugins {
     id("maven-publish")
+    id "fr.brouillard.oss.gradle.jgitver" version "0.9.1"
 }
 
 configurations {
     archives
+}
+
+jgitver {
+    useDistance false
+    useGitCommitID true
+}
+version {
 }
 
 // Before running the build, make sure you've sourced the mqsiprofile command
@@ -33,6 +41,7 @@ task runUnitTests(type: Exec) {
 }
 
 publishing {
+
     def barfile = artifacts.add('archives', file("$buildDir" + '/' + "ace-hello-world" + ".bar")) {
         builtBy('packageApplication') 
     }
@@ -52,7 +61,7 @@ publishing {
             artifact barfile
             artifactId "ace-hello-world"
             groupId 'com.ibm.ace'
-            version '0.1'
+            version project.getVersion()
         }
     }
 }
