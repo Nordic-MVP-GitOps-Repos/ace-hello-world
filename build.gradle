@@ -1,3 +1,10 @@
+plugins {
+    id("maven-publish")
+}
+
+configurations {
+    archives
+}
 
 // Before running the build, make sure you've sourced the mqsiprofile command
 // On OS X, do:
@@ -18,11 +25,36 @@ task buildWithUnitTests(type: Exec) {
 }
 
 task packageApplication(type: Exec) {
-    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "$name" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava'
+    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "ace-hello-world" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava'
 }
 
 task runUnitTests(type: Exec) {
     commandLine binpath + 'IntegrationServer', '-w', tempDir, '--test-project', 'MyExampleApplicationTest', '--no-nodejs', '--admin-rest-api', '-1', '--name', '1'
 }
 
-defaultTasks 'packageApplication', 'buildWithUnitTests', 'runUnitTests'
+publishing {
+    def barfile = artifacts.add('archives', file("$buildDir" + '/' + "ace-hello-world" + ".bar")) {
+        builtBy('packageApplication') 
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Nordic-MVP-GitOps-Repos/ace-hello-world")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }    
+    publications {
+        pub(MavenPublication) {
+            artifact barfile
+            artifactId "ace-hello-world"
+            groupId 'com.ibm.ace'
+            version '0.1'
+        }
+    }
+}
+
+defaultTasks 'packageApplication', 'buildWithUnitTests', 'runUnitTests', 'publish'
