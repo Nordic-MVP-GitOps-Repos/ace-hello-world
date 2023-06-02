@@ -10,6 +10,7 @@ configurations {
 jgitver {
     useDistance false
     useGitCommitID true
+    nonQualifierBranches "main"
 }
 version {
 }
