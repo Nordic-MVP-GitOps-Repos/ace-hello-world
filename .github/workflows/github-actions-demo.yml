@@ -6,13 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: cp.icr.io/cp/appc/ace-server-prod:12.0.8.0-r2-20230524-022316@sha256:68c8723c97d2b70985972f25cf06f6b9d5a3e008c22e7df6f044c1dd988cb77f
+      options: --user root
       credentials:
         username: cp
         password: ${{ secrets.entitlement_key }}
       volumes:
         - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: setup-mqsiprofile
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
       - name: second-step
