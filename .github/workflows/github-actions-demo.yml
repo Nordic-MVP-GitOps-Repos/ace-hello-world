@@ -1,8 +1,7 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Build Barfile
+run-name: ${{ github.actor }} triggered build
 on: [push]
 jobs:
-
   container-test-job:
     runs-on: ubuntu-latest
     container: 
