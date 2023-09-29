@@ -12,4 +12,4 @@ jobs:
         password: ${{ secrets.entitlement_key }}
     steps:
       - name: first-step
-        run: source /opt/ibm/ace-12/server/bin/mqsiprofile
+        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
