@@ -18,5 +18,7 @@ jobs:
       volumes:
         - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
     steps:
-      - name: first-step
+      - name: setup-mqsiprofile
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
+      - name: second-step
+        run: ls -lth /home/aceuser
