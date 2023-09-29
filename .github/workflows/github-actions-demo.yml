@@ -2,6 +2,13 @@ name: Build Barfile
 run-name: ${{ github.actor }} triggered build
 on: [push]
 jobs:
+  cache-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.3.6
+        with:
+          key: docker-${{ runner.os }}-${{ hashFiles('sk') }}
   container-test-job:
     runs-on: ubuntu-latest
     container: 
