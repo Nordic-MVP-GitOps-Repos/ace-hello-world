@@ -21,4 +21,4 @@ jobs:
       - name: setup-mqsiprofile
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
       - name: second-step
-        run: ls -lth /home/aceuser
+        run: ls -lth /home/aceuser/source
