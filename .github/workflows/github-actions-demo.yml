@@ -10,9 +10,5 @@ jobs:
         username: cp
         password: ${{ secrets.entitlement_key }}
     steps:
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.3.6
-        with:
-          key: docker-${{ runner.os }}-${{ hashFiles('sk') }}
       - name: first-step
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
