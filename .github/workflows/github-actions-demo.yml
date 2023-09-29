@@ -12,7 +12,7 @@ jobs:
         password: ${{ secrets.entitlement_key }}
     steps:
       - name: first-step
-        run: ls -lth
+        run: pwd;ls -lth
 
   build-with-gradle:
     runs-on: ubuntu-latest
