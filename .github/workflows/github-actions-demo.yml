@@ -10,5 +10,6 @@ jobs:
         username: cp
         password: ${{ secrets.entitlement_key }}
     steps:
+      - uses: actions/checkout@v3
       - name: first-step
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ibmint
