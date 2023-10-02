@@ -12,6 +12,9 @@ jobs:
         password: ${{ secrets.entitlement_key }}
       volumes:
         - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
+      env:
+        USERNAME: ${{ secrets.package_publishing_username }}
+        TOKEN: ${{ secrets.package_publishing_token }}
     steps:
       - uses: actions/checkout@v4
       - name: run-gradlew
