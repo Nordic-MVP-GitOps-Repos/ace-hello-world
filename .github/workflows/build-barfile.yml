@@ -23,9 +23,9 @@ jobs:
         with:
           key: static-key
           path: |
-            ~/.gradle/wrapper/
+            /home/aceuser/source/.gradle/
       - uses: actions/checkout@v4
       - name: run-gradlew
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
       - name: list
-        run: ls -lth /home/aceuser/source
+        run: ls -ltha /home/aceuser/source
