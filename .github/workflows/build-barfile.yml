@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: run-gradlew
-        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; ls -lth /home/aceuser/source; cd /home/aceuser/source; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; ./gradlew packageApplication
+        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew packageApplication
