@@ -62,7 +62,7 @@ publishing {
             artifact barfile
             artifactId "ace-hello-world"
             groupId 'com.ibm.ace'
-            version project.getVersion()
+            System.getenv("GITHUB_SHA")
         }
     }
 }
