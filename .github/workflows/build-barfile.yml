@@ -28,4 +28,4 @@ jobs:
       - name: run-gradlew
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
       - name: list
-        run: ls -ltha /home/aceuser/source
+        run: ls -ltha /home/aceuser/source/.gradle/
