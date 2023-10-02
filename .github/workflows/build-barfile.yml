@@ -26,7 +26,10 @@ jobs:
       #      /home/aceuser/source/.gradle/
       - uses: actions/checkout@v4
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2,actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
       - name: run-gradlew
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
       - name: list
