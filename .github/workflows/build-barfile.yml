@@ -18,13 +18,13 @@ jobs:
         TOKEN: ${{ secrets.package_publishing_token }}
         GITHUB_SHA: ${{ github.sha }}
     steps:
-      - name: Cache container image
-        uses: actions/cache@v3
-        with:
-          path: /home/aceuser/docker
-          key:  static-key
+      #- name: Cache container image
+      #  uses: actions/cache@v3
+      #  with:
+      #    path: /home/aceuser/docker
+      #    key:  static-key
       - name: ls-docker-dir
-        run: ls -lth /home/aceuser/docker; ls -lth /home/aceuser/docker/overlay2
+        run: du -h /home/aceuser/docker; ls -lth /home/aceuser/docker; ls -lth /home/aceuser/docker/overlay2
       - uses: actions/checkout@v4
       - name: run-gradlew
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew
