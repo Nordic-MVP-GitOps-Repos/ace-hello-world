@@ -21,7 +21,7 @@ jobs:
       - name: Cache container image
         uses: actions/cache@v3
         with:
-          path: /home/aceuser/docker/overlay2
+          path: /home/aceuser/docker/overlay2/layerdb
           key:  static-key
       - uses: actions/checkout@v4
       - name: run-gradlew
