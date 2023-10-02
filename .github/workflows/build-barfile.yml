@@ -26,4 +26,6 @@ jobs:
             ~/.gradle/wrapper/
       - uses: actions/checkout@v4
       - name: run-gradlew
-        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon; echo $GRADLE_USER_HOME
+        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
+      - name: list
+        run: tree -L 4 /home/aceuser/
