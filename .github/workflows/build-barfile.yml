@@ -18,6 +18,8 @@ jobs:
         TOKEN: ${{ secrets.package_publishing_token }}
         GITHUB_SHA: ${{ github.sha }}
     steps:
+      - name: List docker library
+        run: ls -lth /home/aceuser/docker/overlay2
       - name: Cache container image
         uses: actions/cache@v3
         with:
