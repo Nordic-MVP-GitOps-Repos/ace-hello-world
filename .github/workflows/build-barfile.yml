@@ -1,4 +1,4 @@
-name: Build Barfile
+name: Build, Test and Publish barfile
 run-name: ${{ github.actor }} triggered build
 on: [push]
 jobs:
