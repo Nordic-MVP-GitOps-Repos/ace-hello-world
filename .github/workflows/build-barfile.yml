@@ -15,7 +15,7 @@ jobs:
       env:
         USERNAME: ${{ secrets.package_publishing_username }}
         TOKEN: ${{ secrets.package_publishing_token }}
-        GITHUB_SHA: ${{ GITHUB_SHA }}
+        GITHUB_SHA: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
       - name: run-gradlew
