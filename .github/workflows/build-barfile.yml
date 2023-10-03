@@ -5,7 +5,7 @@ jobs:
   build-and-publish-barfile:
     runs-on: ubuntu-latest
     container: 
-      #  ACE versions: https://www.ibm.com/docs/en/app-connect/containers_cd?topic=obtaining-app-connect-enterprise-server-image-from-cloud-container-registry
+      # ACE versions: https://www.ibm.com/docs/en/app-connect/containers_cd?topic=obtaining-app-connect-enterprise-server-image-from-cloud-container-registry
       image: cp.icr.io/cp/appc/ace-server-prod:12.0.8.0-r2-20230524-022316@sha256:68c8723c97d2b70985972f25cf06f6b9d5a3e008c22e7df6f044c1dd988cb77f
       options: --user root
       credentials:
