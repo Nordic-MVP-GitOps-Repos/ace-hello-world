@@ -16,7 +16,7 @@ jobs:
         TOKEN: ${{ secrets.package_publishing_token }}
     steps:
       - name: install-git-in-ace-container
-        run: microdnf update && microdnf install --nodocs git && echo 'export PATH=$PATH:/opt/ibm/ace-12/common/jdk/bin' >> ~/.bash_profile; java -version
+        run: microdnf update && microdnf install --nodocs git && echo 'export PATH=$PATH:/opt/ibm/ace-12/common/jdk/bin' >> ~/.bash_profile; cat ~/.bash_profile
       - uses: actions/checkout@v4
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
