@@ -12,7 +12,6 @@ jobs:
         password: ${{ secrets.entitlement_key }}
       volumes:
         - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
-        - /var/lib/docker:/home/aceuser/docker
       env:
         USERNAME: ${{ secrets.package_publishing_username }}
         TOKEN: ${{ secrets.package_publishing_token }}
