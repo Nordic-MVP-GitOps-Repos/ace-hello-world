@@ -30,11 +30,11 @@ def binpath = baseFilePath + '/server/bin/'
 def tempDir = '/tmp'
 
 task buildWithUnitTests(type: Exec) {
-    commandLine binpath + 'ibmint', 'deploy', '--trace', "$projectDir" + '/trace.log', '--input-path', "$projectDir", '--output-work-directory', tempDir, '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationTest', '--project', 'MyExampleApplicationJava'
+    commandLine binpath + 'ibmint', 'deploy', '--trace', "$projectDir" + '/trace.log', '--input-path', "$projectDir", '--output-work-directory', tempDir, '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationTest', '--project', 'MyExampleApplicationJava', '--project', 'datetimeservice', '--project', 'datetimeserviceJava'
 }
 
 task packageApplication(type: Exec) {
-    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "ace-hello-world" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava'
+    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "ace-hello-world" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava', '--project', 'datetimeservice', '--project', 'datetimeserviceJava'
 }
 
 task runUnitTests(type: Exec) {
