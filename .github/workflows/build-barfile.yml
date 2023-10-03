@@ -2,6 +2,11 @@ name: Build, Test and Publish barfile
 run-name: ${{ github.actor }} triggered build
 on: [push]
 jobs:
+  prep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
   build:
     runs-on: ubuntu-latest
     container: 
