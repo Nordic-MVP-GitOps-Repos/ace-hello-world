@@ -18,7 +18,7 @@ jobs:
       - name: install-git-in-ace-container
         run: microdnf update && microdnf install --nodocs git 
       - uses: actions/checkout@v4
-      - name: Setup Gradle
+      - name: setup-gradle-in-ace-container
         uses: gradle/gradle-build-action@v2
         env:
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mqm/bin:/opt/ibm/ace-12/common/jdk/bin
