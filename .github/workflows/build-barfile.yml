@@ -13,7 +13,6 @@ jobs:
       env:
         USERNAME: ${{ secrets.package_publishing_username }}
         TOKEN: ${{ secrets.package_publishing_token }}
-        GITHUB_SHA: ${{ github.sha }}
     steps:
       - name: install-git
         run: microdnf update && microdnf install --nodocs git
