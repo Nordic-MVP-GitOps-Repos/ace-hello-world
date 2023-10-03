@@ -17,6 +17,8 @@ jobs:
         TOKEN: ${{ secrets.package_publishing_token }}
         GITHUB_SHA: ${{ github.sha }}
     steps:
+      - name: install-git
+        run: sudo apt-get install git
       - uses: actions/checkout@v4
       - name: run-gradlew
         run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
