@@ -67,4 +67,8 @@ publishing {
     }
 }
 
+doLast {
+    println project.getVersion()
+}
+
 defaultTasks 'packageApplication', 'buildWithUnitTests', 'runUnitTests', 'publish'
