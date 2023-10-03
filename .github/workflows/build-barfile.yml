@@ -16,8 +16,8 @@ jobs:
       credentials:
         username: cp
         password: ${{ secrets.entitlement_key }}
-      volumes:
-        - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
+      #volumes:
+      #  - /home/runner/work/ace-hello-world/ace-hello-world:/home/aceuser/source
       env:
         USERNAME: ${{ secrets.package_publishing_username }}
         TOKEN: ${{ secrets.package_publishing_token }}
@@ -25,6 +25,6 @@ jobs:
     steps:
       - name: list-mounts
         run: ls -lth /mnt; mount | grep ^/dev/ | grep -v /etc | awk '{print $3}'
-      #- uses: actions/checkout@v4
-      #- name: run-gradlew
-      #  run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
+      - uses: actions/checkout@v4
+      - name: run-gradlew
+        run: pwd; source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; ./gradlew --no-daemon;
