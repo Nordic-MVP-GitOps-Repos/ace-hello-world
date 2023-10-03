@@ -57,6 +57,7 @@ publishing {
             }
         }
     }    
+    
     publications {
         pub(MavenPublication) {
             artifact barfile
@@ -67,8 +68,4 @@ publishing {
     }
 }
 
-doLast {
-    println project.getVersion()
-}
-
-defaultTasks 'packageApplication', 'buildWithUnitTests', 'runUnitTests', 'publish'
+defaultTasks 'version', 'packageApplication', 'buildWithUnitTests', 'runUnitTests', 'publish'
