@@ -8,6 +8,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
   build:
+    needs: prep
     runs-on: ubuntu-latest
     container: 
       image: cp.icr.io/cp/appc/ace-server-prod:12.0.8.0-r2-20230524-022316@sha256:68c8723c97d2b70985972f25cf06f6b9d5a3e008c22e7df6f044c1dd988cb77f
@@ -22,8 +23,8 @@ jobs:
         TOKEN: ${{ secrets.package_publishing_token }}
         GITHUB_SHA: ${{ github.sha }}
     steps:
-      - name: install-git
-        run: apt-get install git
-      - uses: actions/checkout@v4
-      - name: run-gradlew
-        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
+      - name: list-mounts
+        run: ls -lth /mnt; mount | grep ^/dev/ | grep -v /etc | awk '{print $3}'
+      #- uses: actions/checkout@v4
+      #- name: run-gradlew
+      #  run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; /home/aceuser/source/gradlew --no-daemon;
