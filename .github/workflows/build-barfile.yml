@@ -7,7 +7,7 @@ jobs:
     container: 
       # ACE versions: https://www.ibm.com/docs/en/app-connect/containers_cd?topic=obtaining-app-connect-enterprise-server-image-from-cloud-container-registry
       #image: cp.icr.io/cp/appc/ace-server-prod:12.0.8.0-r2-20230524-022316@sha256:68c8723c97d2b70985972f25cf06f6b9d5a3e008c22e7df6f044c1dd988cb77f
-      image: cp.icr.io/cp/appc/ace-server-prod:latest
+      image: cp.icr.io/cp/appc/ace-server-prod@sha256:7417b6c460e2d2f9add4ec22cd5df6a3f71ef26d5112c9c0b93ebba514aa8e89
       options: --user root
       credentials:
         username: cp
