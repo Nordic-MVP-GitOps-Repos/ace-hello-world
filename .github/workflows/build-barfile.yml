@@ -3,10 +3,13 @@ run-name: ${{ github.actor }} triggered build
 on: [push]
 jobs:
   build-and-publish-barfile:
+    # Default token permissions
+    permissions:
+      contents: write
+      packages: write
     runs-on: ubuntu-latest
     container: 
       # ACE versions: https://www.ibm.com/docs/en/app-connect/containers_cd?topic=obtaining-app-connect-enterprise-server-image-from-cloud-container-registry
-      #image: cp.icr.io/cp/appc/ace-server-prod:12.0.8.0-r2-20230524-022316@sha256:68c8723c97d2b70985972f25cf06f6b9d5a3e008c22e7df6f044c1dd988cb77f
       image: cp.icr.io/cp/appc/ace-server-prod@sha256:c1fac1a80768e26f64d8fff770b10a96b99b2bd4df2e2cd533e96f1a85ebec5c
       options: --user root
       credentials:
@@ -23,11 +26,16 @@ jobs:
         uses: gradle/gradle-build-action@v2
         env:
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mqm/bin:/opt/ibm/ace-12/common/jdk/bin
-      - name: run-gradlew-in-ace-container
+      - name: gradlew-build-and-publish-barfile
         run: | 
           source /opt/ibm/ace-12/server/bin/mqsiprofile
           export JAVA_HOME=/opt/ibm/ace-12/common/jdk 
           ./gradlew --no-daemon
           cp build/ace-hello-world.bar .
           git config --global --add safe.directory /__w/ace-hello-world/ace-hello-world
-          git status 
+          git status
+      - name: commit-bar-file
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Committed bar file after publishing
+          file_pattern: '*.bar'
