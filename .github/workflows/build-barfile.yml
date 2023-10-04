@@ -24,4 +24,8 @@ jobs:
         env:
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mqm/bin:/opt/ibm/ace-12/common/jdk/bin
       - name: run-gradlew-in-ace-container
-        run: source /opt/ibm/ace-12/server/bin/mqsiprofile; export JAVA_HOME=/opt/ibm/ace-12/common/jdk; ./gradlew --no-daemon;
+        run: | 
+          source /opt/ibm/ace-12/server/bin/mqsiprofile
+          export JAVA_HOME=/opt/ibm/ace-12/common/jdk 
+          ./gradlew --no-daemon
+          git status
