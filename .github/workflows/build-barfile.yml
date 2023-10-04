@@ -38,7 +38,6 @@ jobs:
           ./gradlew --no-daemon
           cp build/ace-hello-world.bar .
           git config --global --add safe.directory /__w/ace-hello-world/ace-hello-world
-          git status
       # Github packages requires authentication even for public repos and packages, so we 
       # also commit the newly created bar file to the repo where it can be accessed without credentials.
       - name: commit-bar-file
