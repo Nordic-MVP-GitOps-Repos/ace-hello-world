@@ -30,3 +30,4 @@ jobs:
           ./gradlew --no-daemon
           git config --global --add safe.directory /__w/ace-hello-world/ace-hello-world
           git status
+          ls -lth .
