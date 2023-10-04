@@ -19,13 +19,18 @@ jobs:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      # Install git so we get a proper git repository on the ACE image and not just the source files. 
       - name: install-git-in-ace-container
         run: microdnf update && microdnf install --nodocs git 
+      # Clone repository
       - uses: actions/checkout@v4
+      # Manage cacheing of Gradle files
       - name: setup-gradle-in-ace-container
         uses: gradle/gradle-build-action@v2
         env:
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mqm/bin:/opt/ibm/ace-12/common/jdk/bin
+      # Run the gradle build using the gradle wrapper
+      # The build creates the bar file, runs the tests and publishes the bar file to Github Packages.
       - name: gradlew-build-and-publish-barfile
         run: | 
           source /opt/ibm/ace-12/server/bin/mqsiprofile
@@ -34,6 +39,8 @@ jobs:
           cp build/ace-hello-world.bar .
           git config --global --add safe.directory /__w/ace-hello-world/ace-hello-world
           git status
+      # Github packages requires authentication even for public repos and packages, so we 
+      # also commit the newly created bar file to the repo where it can be accessed without credentials.
       - name: commit-bar-file
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
