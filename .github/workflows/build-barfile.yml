@@ -28,6 +28,6 @@ jobs:
           source /opt/ibm/ace-12/server/bin/mqsiprofile
           export JAVA_HOME=/opt/ibm/ace-12/common/jdk 
           ./gradlew --no-daemon
+          cp build/ace-hello-world.bar .
           git config --global --add safe.directory /__w/ace-hello-world/ace-hello-world
-          git status
-          ls -lth .
+          git status 
