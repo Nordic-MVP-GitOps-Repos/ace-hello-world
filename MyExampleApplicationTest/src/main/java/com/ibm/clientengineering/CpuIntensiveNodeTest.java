@@ -13,15 +13,13 @@ public class CpuIntensiveNodeTest {
 
 	@Test
 	public void test() throws TestException {
-
-		// Define the SpyObjectReference
+	
 		SpyObjectReference httpInNode = new SpyObjectReference().application("MyExampleApplication")
 				.messageFlow("CpuIntensiveFlow").node("HTTP Input");
 		
 		SpyObjectReference esqlComputeNode = new SpyObjectReference().application("MyExampleApplication")
-				.messageFlow("CpuIntensiveFlow").node("EQSLCompute");
+				.messageFlow("CpuIntensiveFlow").node("ESQLCompute");
 
-		// Initialise a NodeSpy
 		NodeSpy httpInSpy = new NodeSpy(httpInNode);
 		NodeSpy esqlSpy = new NodeSpy(esqlComputeNode);
 		
