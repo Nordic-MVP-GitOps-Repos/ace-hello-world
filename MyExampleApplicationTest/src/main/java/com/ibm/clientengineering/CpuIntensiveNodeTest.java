@@ -15,25 +15,31 @@ public class CpuIntensiveNodeTest {
 	public void test() throws TestException {
 
 		// Define the SpyObjectReference
-		SpyObjectReference nodeReference = new SpyObjectReference().application("MyExampleApplication")
-				.messageFlow("CpuIntensiveFlow").node("CalculatePrimeNumbers");
+		SpyObjectReference httpInNode = new SpyObjectReference().application("MyExampleApplication")
+				.messageFlow("CpuIntensiveFlow").node("HTTP Input");
+		
+		SpyObjectReference esqlComputeNode = new SpyObjectReference().application("MyExampleApplication")
+				.messageFlow("CpuIntensiveFlow").node("EQSLCompute");
 
 		// Initialise a NodeSpy
-		NodeSpy nodeSpy = new NodeSpy(nodeReference);
+		NodeSpy httpInSpy = new NodeSpy(httpInNode);
+		NodeSpy esqlSpy = new NodeSpy(esqlComputeNode);
 		
 		// Declare a new TestMessageAssembly object for the message being sent into the node
 		TestMessageAssembly inputMessageAssembly = new TestMessageAssembly();
+		inputMessageAssembly.environmentPath("FLOW.Context").setValue("anEnvironmentValue");
 						
 		// Call the message flow node with the Message Assembly
-		nodeSpy.evaluate(inputMessageAssembly, true, "in");
+		httpInSpy.propagate(inputMessageAssembly, "out");
 			
-		TestMessageAssembly outputAssembly = nodeSpy.propagatedMessageAssembly("out", 1);
+		TestMessageAssembly outputAssembly = esqlSpy.propagatedMessageAssembly("out", 1);
 		
 		String output = outputAssembly.getMessageBodyAsString();
 		
 		System.err.println(output);
-		System.out.println("output: " + output);
+		
 		assertTrue(output.contains("GIT_COMMIT"));
+		assertTrue(output.contains("anEnvironmentValue"));
 
 	}
 }
