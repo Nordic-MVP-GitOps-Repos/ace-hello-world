@@ -34,7 +34,7 @@ task buildWithUnitTests(type: Exec) {
 }
 
 task packageApplication(type: Exec) {
-    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "ace-hello-world" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava', '--project', 'datetimeservice', '--project', 'datetimeserviceJava'
+    commandLine binpath + 'ibmint', 'package', '--input-path', "$projectDir", '--output-bar-file', "$buildDir" + '/' + "ace-hello-world" + '.bar', '--project', 'MyExampleApplication', '--project', 'MyExampleApplicationJava', '--project', 'datetimeservice', '--project', 'datetimeserviceJava', '--compile-maps-and-schema'
 }
 
 task runUnitTests(type: Exec) {
