@@ -38,7 +38,7 @@ task packageApplication(type: Exec) {
 }
 
 task runUnitTests(type: Exec) {
-    commandLine binpath + 'IntegrationServer', '-w', tempDir, '--test-project', 'MyExampleApplicationTest', '--no-nodejs', '--admin-rest-api', '-1', '--name', '1', '--start-msgflows', 'false'
+    commandLine binpath + 'IntegrationServer', '-w', tempDir, '--test-project', 'MyExampleApplicationTest', '--no-nodejs', '--admin-rest-api', '-1', '--name', '1', '--start-msgflows', 'false', '--mq-queue-manager-name', 'dummy'
 }
 
 publishing {
