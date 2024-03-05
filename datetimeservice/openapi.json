@@ -21,6 +21,16 @@
           }
         }
       }
+    },
+    "/date": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
