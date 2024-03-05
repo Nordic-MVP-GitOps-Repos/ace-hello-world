@@ -38,8 +38,9 @@ public class GetDatetime_JavaCompute extends MbJavaComputeNode {
 			DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
 			
 			
-			addJsonChildToElement(outJsonData, "date", dateFormat.format(now));
-			addJsonChildToElement(outJsonData, "time", timeFormat.format(now));
+			ElementUtils.addJsonChildToElement(outJsonData, "date", dateFormat.format(now));
+
+			ElementUtils.addJsonChildToElement(outJsonData, "time", timeFormat.format(now));
 			
 
 		} catch (MbException e) {
@@ -50,11 +51,5 @@ public class GetDatetime_JavaCompute extends MbJavaComputeNode {
 			throw new MbUserException(this, "evaluate()", "", "", e.toString(), null);
 		}
 		out.propagate(outAssembly);
-	}
-
-	private void addJsonChildToElement(MbElement element, String name, String value) throws MbException {
-		MbElement child = element.createElementAsLastChild(MbElement.TYPE_NAME_VALUE);
-		child.setName(name);
-		child.setValue(value);
 	}
 }
